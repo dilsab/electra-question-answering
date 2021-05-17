@@ -21,10 +21,10 @@ def get_args():
     parser.add_argument('--train_data', type=str, default='data/train.json', help='Train data path')
     parser.add_argument('--validation_data', type=str, default='data/validation.json', help='Validation data path')
     parser.add_argument('--validation_interval', type=int, default=1, help='Number of epochs between validation phases')
-    parser.add_argument('--load_last', action='store_true', help='Load last model')
+    parser.add_argument('--load_last', action='store_true', help='Load last model and tokenizer')
     parser.add_argument('--save_path', type=str, default='save', help='Model and tokenizer save path')
     parser.add_argument('--save_interval', type=int, default=300,
-                        help='Save model every save_interval steps')
+                        help='Save model and tokenizer every save_interval steps')
 
     return parser.parse_args()
 
