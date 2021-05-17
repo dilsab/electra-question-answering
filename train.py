@@ -1,16 +1,16 @@
 import argparse
 import json
 import os
-from glob import glob
 from pathlib import Path
 
 import numpy as np
 import torch
 from torch.utils.data import DataLoader
 from tqdm.autonotebook import tqdm
-from transformers import ElectraTokenizerFast, ElectraForQuestionAnswering, AdamW
+from transformers import AdamW
 
 from dataset import Dataset
+from utils import load_model_tokenizer, last_save_path
 
 
 def get_args():
@@ -32,18 +32,6 @@ def get_args():
 def add_answer_end_indexes(answers):
     for answer in answers:
         answer['answer_end'] = answer['answer_start'] + len(answer['text'])
-
-
-def load_model_tokenizer(path):
-    return ElectraForQuestionAnswering.from_pretrained(path), \
-           ElectraTokenizerFast.from_pretrained(path)
-
-
-def last_save_path(save_path):
-    save_paths = glob(os.path.join(save_path, '*'))
-    last_path = sorted(save_paths, key=lambda x: int(x.rsplit('_')[-1]), reverse=True)[0]
-
-    return last_path
 
 
 def save(model, tokenizer, save_path, epoch, step):
