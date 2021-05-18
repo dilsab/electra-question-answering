@@ -62,6 +62,7 @@ function sendQuestion() {
     });
     xmlHttpRequest.open('GET', `http://127.0.0.1:5000/answer?context=${context}&question=${question}`);
     xmlHttpRequest.send();
+    messageTextarea.value = '';
 }
 
 function saveContext() {
