@@ -1,5 +1,5 @@
-from flask import Flask
 import flask.scaffold
+from flask import Flask, render_template
 
 from answering import ElectraQuestionAnswering
 
@@ -7,12 +7,17 @@ flask.helpers._endpoint_from_view_func = flask.scaffold._endpoint_from_view_func
 from flask_restful import reqparse, Api, Resource
 
 electra_question_answering = ElectraQuestionAnswering('save')
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 api = Api(app)
 
 parser = reqparse.RequestParser()
 parser.add_argument('context', type=str)
 parser.add_argument('question', type=str)
+
+
+@app.route('/', methods=['GET'])
+def index():
+    return render_template('index.html')
 
 
 class Answer(Resource):
