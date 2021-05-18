@@ -10,13 +10,13 @@ pipenv install
 ```
 Or
 ```shell
-pip install transformers[torch], numpy, tqdm
+pip install transformers[torch], numpy, tqdm, flask-restful
 ```
 **GPU**\
 Install [PyTorch](https://pytorch.org/). \
 Run
 ```shell
-pipenv install transformers, numpy, tqdm
+pipenv install transformers, numpy, tqdm, flask-restful
 ```
 
 ## Usage
@@ -42,3 +42,12 @@ pipenv shell
 Run command
 ```shell
 python train.py <arguments>
+```
+
+### Question answering (chat)
+
+Start server
+```shell
+python api.py
+```
+Go to provided URL
